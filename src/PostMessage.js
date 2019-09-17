@@ -16,11 +16,11 @@ function PostMessage() {
 
   const onChange = e => {
     const value = e.target.value;
-    setContent(value);
+    setContent(value.trim());
   };
 
   const onClick = async () => {
-    if (!content.trim()) {
+    if (!content) {
       showErrorToast({ description: FAILED_EMPTY_CONTENT_MESSAGE });
       return;
     }
