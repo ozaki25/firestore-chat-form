@@ -20,7 +20,7 @@ function PostMessage() {
   };
 
   const onClick = async () => {
-    if (!content) {
+    if (!content.trim()) {
       showErrorToast({ description: FAILED_EMPTY_CONTENT_MESSAGE });
       return;
     }
