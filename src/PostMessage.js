@@ -3,7 +3,14 @@ import { Box, Button, Input, useToast } from '@chakra-ui/core';
 
 const url = process.env.REACT_APP_API_URL;
 
+const SUCCESS_SEND_MESSAGE = '送信が完了しました';
+
+const FAILED_SEND_MESSAGE = '送信に失敗しました';
+
+const FAILED_EMPTY_CONTENT_MESSAGE = 'コメントを入力してください';
+
 function PostMessage() {
+  const successToast = useToast();
   const errorToast = useToast();
   const [content, setContent] = useState('');
 
@@ -14,19 +21,31 @@ function PostMessage() {
 
   const onClick = async () => {
     if (!content) {
-      showErrorToast();
+      showErrorToast({ description: FAILED_EMPTY_CONTENT_MESSAGE });
       return;
     }
-    fetch(`${url}/messages`, {
+    const res = await fetch(`${url}/messages`, {
       method: 'post',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ content }),
     });
+    if (res.ok) {
+      showSuccessToast({ description: SUCCESS_SEND_MESSAGE });
+    } else {
+      showErrorToast({ description: FAILED_SEND_MESSAGE });
+    }
   };
 
-  const showErrorToast = () => {
+  const showSuccessToast = ({ description }) => {
+    successToast({
+      description,
+      status: 'success',
+    });
+  };
+
+  const showErrorToast = ({ description }) => {
     errorToast({
-      description: 'コメントを入力してください',
+      description,
       status: 'error',
     });
   };
