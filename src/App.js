@@ -1,11 +1,12 @@
 import React from 'react';
-import { ThemeProvider } from '@chakra-ui/core';
-import { Button } from '@chakra-ui/core';
+import { CSSReset, ThemeProvider } from '@chakra-ui/core';
+import PostMessage from './PostMessage';
 
 function App() {
   return (
     <ThemeProvider>
-      <Button variantColor="green">Hello</Button>
+      <CSSReset />
+      <PostMessage />
     </ThemeProvider>
   );
 }
