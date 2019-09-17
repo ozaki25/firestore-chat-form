@@ -31,6 +31,7 @@ function PostMessage() {
     });
     if (res.ok) {
       showSuccessToast({ description: SUCCESS_SEND_MESSAGE });
+      setContent('');
     } else {
       showErrorToast({ description: FAILED_SEND_MESSAGE });
     }
