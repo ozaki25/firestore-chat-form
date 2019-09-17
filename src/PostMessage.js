@@ -53,7 +53,7 @@ function PostMessage() {
 
   return (
     <Box p={4}>
-      <Input mb={4} defaultValue={content} onChange={onChange} />
+      <Input mb={4} value={content} onChange={onChange} />
       <Button onClick={onClick} width="100%">
         送信
       </Button>
